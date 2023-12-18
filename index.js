@@ -11,6 +11,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+	return res.send("Hello, this is the root path pedjuangilmu-api!");
+});
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(documentation));
 app.use("/api/v1", router);
 

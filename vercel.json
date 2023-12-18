@@ -16,7 +16,9 @@
 			"dest": "/$1"
 		},
 		{
-			"handle": "filesystem"
+			"handle": "filesystem",
+			"src": "/swagger/(.*)",
+			"dest": "/$1"
 		},
 		{
 			"src": ".*",

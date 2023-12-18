@@ -4,19 +4,26 @@
 		{
 			"src": "index.js",
 			"use": "@vercel/node"
+		},
+		{
+			"src": "prisma/schema.prisma",
+			"use": "prisma"
 		}
 	],
 	"routes": [
 		{
-			"src": "/api-docs/",
-			"dest": "index.js"
+			"src": "/api-docs/(.*)",
+			"dest": "/documentation/$1"
 		},
 		{
 			"src": "/api/v1/(.*)",
 			"dest": "/$1"
 		},
 		{
-			"src": "/(.*)",
+			"handle": "filesystem"
+		},
+		{
+			"src": ".*",
 			"dest": "index.js"
 		}
 	],

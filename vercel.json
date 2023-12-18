@@ -1,29 +1,36 @@
 {
 	"version": 2,
-	"builds": [
-		{
-			"src": "index.js",
-			"use": "@vercel/node"
-		}
-	],
 	"routes": [
 		{
-			"src": "/api-docs/(.*)",
-			"dest": "/documentation/$1"
-		},
-		{
 			"src": "/api/v1/(.*)",
-			"dest": "/$1"
+			"dest": "/api/v1/$1"
 		},
 		{
-			"handle": "filesystem"
+			"src": "/api-docs/(.*)",
+			"dest": "/api-docs/$1"
 		},
 		{
-			"src": ".*",
-			"dest": "index.js"
+			"src": "/(.*)",
+			"dest": "/"
 		}
 	],
 	"env": {
 		"NODE_ENV": "production"
-	}
+	},
+	"builds": [
+		{
+			"src": "index.js",
+			"use": "@vercel/node-server",
+			"config": {
+				"maxLambdaSize": "2048mb"
+			}
+		},
+		{
+			"src": "prisma/schema.prisma",
+			"use": "@prisma/cli",
+			"config": {
+				"prisma": "prisma"
+			}
+		}
+	]
 }

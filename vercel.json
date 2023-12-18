@@ -9,16 +9,16 @@
 	"routes": [
 		{
 			"src": "/api-docs/(.*)",
-			"dest": "/api-docs/$1"
+			"dest": "/documentation/$1"
 		},
 		{
 			"src": "/api/v1/(.*)",
 			"dest": "/$1"
 		},
 		{
-			"handle": "filesystem",
 			"src": "/swagger/(.*)",
-			"dest": "/$1"
+			"dest": "/$1",
+			"handle": "filesystem"
 		},
 		{
 			"src": ".*",

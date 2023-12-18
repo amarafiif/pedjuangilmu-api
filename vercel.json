@@ -1,0 +1,34 @@
+{
+	"version": 2,
+	"builds": [
+		{
+			"src": "index.js",
+			"use": "@vercel/node"
+		},
+		{
+			"src": "prisma/schema.prisma",
+			"use": "@prisma/cli",
+			"config": { "prisma": "./prisma" }
+		}
+	],
+	"routes": [
+		{
+			"src": "/api-docs/(.*)",
+			"dest": "/documentation/$1"
+		},
+		{
+			"src": "/api/v1/(.*)",
+			"dest": "/$1"
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": ".*",
+			"dest": "index.js"
+		}
+	],
+	"env": {
+		"NODE_ENV": "production"
+	}
+}

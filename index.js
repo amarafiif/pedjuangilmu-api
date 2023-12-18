@@ -4,12 +4,11 @@ const express = require("express"),
 	port = process.env.PORT || 3000,
 	router = require("./routers"),
 	swaggerUi = require("swagger-ui-express"),
-	documentation = require("./documentation/api.json"),
-	bodyParser = require("body-parser");
+	documentation = require("./documentation/api.json");
 
 require("dotenv").config();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(documentation));
@@ -24,3 +23,5 @@ app.get("*", (req, res) => {
 app.listen(port, () => {
 	console.log(`Server running at http://localhost:${port}`);
 });
+
+module.exports = app;
